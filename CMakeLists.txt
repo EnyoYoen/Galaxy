@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.1.0)
 project(
     Galaxy
     VERSION 0.1
-    DESCRIPTION "A modular set of tools grouped in an app, made in C++ with QT6"
+    DESCRIPTION "A modular set of tools grouped in an app, made in C++ with Qt6"
     LANGUAGES CXX
 )
 

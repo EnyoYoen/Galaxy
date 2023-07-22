@@ -10,7 +10,7 @@
  - [License](#license)
 
 ## Modules
-There is only one module for now :  
+There is only one module for now:  
  - [x] To-Do Lists
  - [ ] Calendar
  - [ ] Terminal
@@ -29,25 +29,27 @@ There is only one module for now :
 $ sudo apt-get install qt6-base-dev libpthread-stubs0-dev
 ```
 
-**On Windows (with [vcpkg](https://github.com/microsoft/vcpkg/#quick-start-windows)) :**
+**On Windows (with [vcpkg](https://github.com/microsoft/vcpkg/#quick-start-windows)):**
 ```shell
 > vcpkg install qt6 pthreads
 ```
 
-**On MacOS (with [Homebrew](https://brew.sh/index)) :**
+**On MacOS (with [Homebrew](https://brew.sh/index)):**
 ```shell
 $ brew install qt6 libpthread-stubs
 ```
 
-You will also need [CMake](https://cmake.org/download/) in your system PATH (Minimum version : 3.1.0)
+You will also need [CMake](https://cmake.org/download/) in your system PATH (Minimum version: 3.1.0)
 ### Build
-In 'Galaxy' (top) folder :  
-On Windows **NEED TO BUILD EACH MODULE INDIVIDUALLY** (they are in the 'modules' folder) :  
+In 'Galaxy' (top) folder:  
+On Windows:  
 ```shell
+build_modules.bat
+cd build\
 cmake .. -DCMAKE_TOOLCHAIN_FILE=(path/to/)vcpkg/scripts/buildsystems/vcpkg.cmake
 cmake --build . -j 8 --config Release
 ```
-Otherwise :
+Otherwise:
 ```shell
 ./build_modules.sh
 cd build/
