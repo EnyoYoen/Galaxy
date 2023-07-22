@@ -14,12 +14,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Qt6 COMPONENTS Widgets REQUIRED)
 
 set(SOURCES
-    "main.cpp"
-    "galaxy.cpp"
+    "src/main.cpp"
+    "src/galaxy.cpp"
 )
 
 set(HEADERS
-    "galaxy.h"
+    "src/galaxy.h"
 )
 
 add_executable(Galaxy ${SOURCES} ${HEADERS})
