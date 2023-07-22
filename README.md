@@ -56,7 +56,7 @@ cmake --build . -j 8
 ```
 ### Run
 The executable is in the 'Galaxy/build' folder ;)  
-The modules (*.glx) and their config files (*.yml) are in the 'Galaxy/build/modules' folder. 
+The modules (\*.glx) and their config files (\*.yml) are in the 'Galaxy/build/modules' folder. 
 ## Contact
 You can reach me by e-mail at this address: enyotoyrep@gmail.com or on Discord: yoen.
 ## Coding Conventions
