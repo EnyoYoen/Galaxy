@@ -1,0 +1,40 @@
+name: Build Macos
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+    
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Install Qt        
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: 6.4.3
+          arch: x64
+          dir: '${{github.workspace}}/'
+
+      - name: Build
+        shell: bash
+        run: |
+          ./build_modules.sh
+          cd build
+          cmake -DCMAKE_BUILD_TYPE=Release ..
+          cmake --build . --parallel $(nproc)
+          mkdir MacOs
+          mv Galaxy MacOs/
+          mv modules/ MacOs/
+
+      - name: Upload Executable
+        uses: actions/upload-artifact@v3
+        with:
+          name: "Fast-Discord - MacOs x64"
+          path: '${{github.workspace}}/build/MacOs'

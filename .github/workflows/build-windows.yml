@@ -1,0 +1,42 @@
+name: Build Windows
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+    
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Install Qt        
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: 6.4.3
+          arch: 'win64_msvc2019_64'
+          dir: '${{github.workspace}}/'
+
+      - name: Build
+        shell: bash
+        env:
+          CXX: cl.exe
+        run: |
+          build_modules.bat
+          cd build
+          cmake -DCMAKE_BUILD_TYPE=Release ..
+          cmake --build . --parallel $(nproc) --config Release
+          move modules/ Release/
+          cd $GITHUB_WORKSPACE/build/Release
+          $GITHUB_WORKSPACE/Qt/6.4.3/msvc2019_64/bin/windeployqt.exe --release Galaxy.exe
+
+      - name: Upload Executable
+        uses: actions/upload-artifact@v3
+        with:
+          name: "Fast-Discord - Windows x64"
+          path: '${{github.workspace}}/build/Release'
