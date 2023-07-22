@@ -1,0 +1,7 @@
+build/*
+!build/modules
+build/modules/*
+!build/modules/cache
+build/modules/cache/*
+!build/modules/cache/.gitkeep
+.vscode/

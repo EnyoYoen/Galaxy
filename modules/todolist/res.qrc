@@ -1,0 +1,12 @@
+<RCC>
+    <qresource>
+        <file alias="whitney.otf">../../assets/fonts/whitney.otf</file>
+        <file alias="sb-arrow-opened.png">assets/images/sb-arrow-opened.png</file>
+        <file alias="sb-arrow-closed.png">assets/images/sb-arrow-closed.png</file>
+        <file alias="back-arrow.png">assets/images/back-arrow.png</file>
+        <file alias="pen.png">assets/images/pen.png</file>
+        <file alias="bin.png">assets/images/bin.png</file>
+        <file alias="cross.png">assets/images/cross.png</file>
+        <file alias="style.css">assets/style.css</file>
+    </qresource>
+</RCC>

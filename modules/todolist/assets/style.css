@@ -1,0 +1,201 @@
+QWidget.todolist {
+    background-color: #141519;
+}
+
+QScrollArea.scroll-list {
+    background-color: #141519;
+    border: none;
+}
+QScrollBar::handle:vertical {
+    border: none;
+    border-radius: 2px;
+    background-color: #acacac;
+}
+QScrollBar:vertical {
+    border: none;
+    background-color: #1f2024;
+    border-radius: 3px;
+    width: 6px;
+}
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    border:none;
+    background: none;
+    height: 0px;
+}
+QScrollBar::left-arrow:vertical, QScrollBar::right-arrow:vertical {
+    background: none;
+}
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+    background: none;
+}
+
+QWidget.scroll-list-content {
+    background-color: #141519;
+}
+
+QWidget.scroll-list-title {
+    font-family: "Whitney"; 
+    font-size: 30px;
+    color: #feffff;
+}
+
+QWidget.scroll-list-element {
+    background-color: #1f2024;
+    border-radius: 12px;
+}
+
+QLabel.scroll-list-element-title {
+    font-family: "Whitney"; 
+    font-size: 26px;
+    color: #feffff;
+}
+
+QPushButton.homepage-list-button {
+    background-color: #2196f3;
+    border: none;
+    border-radius: 15px;
+    padding: 5px;
+    font-family: "Whitney"; 
+    font-size: 16px;
+    color: #feffff;
+}
+
+QWidget.sidebar {
+    background-color: #252525;
+}
+
+QPushButton.sidebar-hider-opened {
+    image: url(":/sb-arrow-opened.png");
+}
+
+QPushButton.sidebar-hider-closed {
+    image: url(":/sb-arrow-closed.png");
+}
+
+QWidget.list {
+    background-color: #141519;
+}
+
+QPushButton.list-back-button {
+    background-color: #141414;
+    border: none;
+    image: url(":/back-arrow.png");
+}
+
+QWidget.list-title {
+    font-family: "Whitney"; 
+    font-size: 24px;
+    color: #feffff;
+}
+
+QPushButton.list-sublist-button {
+    background-color: #2196f3;
+    border: none;
+    border-radius: 15px;
+    padding: 5px;
+    font-family: "Whitney"; 
+    font-size: 16px;
+    color: #feffff;
+}
+
+QWidget.popup {
+    background-color: rgba(20, 20, 20, 0.2);
+}
+
+QWidget.popup-content {
+    background-color: #252525;
+    border: #646464, 2px;
+    border-radius: 10px;
+}
+
+QLabel.popup-header {
+    font-family: "Whitney"; 
+    font-size: 24px;
+    color: #feffff;
+}
+
+QPushButton.popup-ok {
+    background-color: #1a9e00;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    font-family: "Whitney"; 
+    font-size: 16px;
+    color: #feffff;
+}
+
+QPushButton.popup-cancel {
+    background-color: #9e0000;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    font-family: "Whitney"; 
+    font-size: 16px;
+    color: #feffff;
+}
+
+QLineEdit.popup-input {
+    font-family: "Whitney"; 
+    font-size: 18px;
+    color: #969696;
+    background-color: #383838;
+}
+
+QPushButton.icon-button {
+    background-color: #383838;
+    border: none;
+    border-radius: 15px;
+    padding: 5px;
+}
+
+QPushButton.icon-button-hover {
+    background-color: #2196f3;
+    border: none;
+    border-radius: 15px;
+    padding: 5px;
+}
+
+QPushButton.icon-button#pen {
+    image: url(":/pen.png");
+}
+
+QPushButton.icon-button#bin {
+    image: url(":/bin.png");
+}
+
+QPushButton.icon-button#moon {
+    image: url(":/moon.png");
+}
+
+QLabel.sublist {
+    background-color: #1f2024;
+    border-radius: 5px;
+}
+
+QLabel.sublist-title {
+    font-family: "Whitney"; 
+    font-size: 20px;
+    color: #feffff;
+}
+
+QPushButton.sublist-add-button {
+    border: none;
+    image: url(":/cross.png");
+}
+
+QWidget.element {
+    background-color: #18191d;
+    border-radius: 8px;
+}
+
+QLabel.element-title {
+    font-family: "Whitney"; 
+    font-size: 16px;
+    color: #bdbdbd;
+}
+
+QLabel.element-content {
+    font-family: "Whitney"; 
+    font-size: 12px;
+    color: #acacac;
+}
