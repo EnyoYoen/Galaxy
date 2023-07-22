@@ -3,7 +3,7 @@
 ---
 ### Table of contents
  - [Modules](#modules)
- - [Download](#download) *SOON*
+ - [Download](#download)
  - [Build and Run](#build-and-run)
  - [Contact](#contact)
  - [Coding conventions](#coding-conventions)
@@ -16,11 +16,27 @@ There is only one module for now:
  - [ ] Terminal
  - *and more soon*
 
-## Download *SOON*
+## Download
+- [Windows](https://nightly.link/EnyoYoen/Galaxy/workflows/build-windows/main/Galaxy%20-%20Windows%20x64.zip)
+- [MacOs](https://nightly.link/EnyoYoen/Galaxy/workflows/build-macos/main/Galaxy%20-%20MacOs%20x64.zip)
+- [Linux](https://nightly.link/EnyoYoen/Galaxy/workflows/build-linux/main/Galaxy%20-%20Linux%20x64.zip) 
+
+For Linux and MacOs, you need to install some dependencies :  
+- On Ubuntu 22.04 or later
+```shell
+$ sudo apt-get install qt6-base-dev libpthread-stubs0-dev
+```
+- On MacOS (with [Homebrew](https://brew.sh/index)):
+```shell
+$ brew install qt6 libpthread-stubs
+```
+
+Galaxy is available for Windows (x64), Linux (x64) and MacOs (x64) for now.  
+You can compile Galaxy if it is not available for your operating system or your arch : [Build and Run](#build-and-run).
 
 ## Build and Run
 ### Dependencies
-- Qt5 (Widgets)
+- Qt6 (Widgets)
 - Pthread
 
 ### Install the dependencies

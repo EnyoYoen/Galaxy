@@ -36,5 +36,5 @@ jobs:
       - name: Upload Executable
         uses: actions/upload-artifact@v3
         with:
-          name: "Fast-Discord - MacOs x64"
+          name: "Galaxy - MacOs x64"
           path: '${{github.workspace}}/build/MacOs'

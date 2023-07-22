@@ -36,5 +36,5 @@ jobs:
       - name: Upload Executable
         uses: actions/upload-artifact@v3
         with:
-          name: "Fast-Discord - Linux x64"
+          name: "Galaxy - Linux x64"
           path: '${{github.workspace}}/build/Linux'
