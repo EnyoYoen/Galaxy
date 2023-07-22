@@ -17,9 +17,9 @@ There is only one module for now:
  - *and more soon*
 
 ## Download
-- [Windows](https://nightly.link/EnyoYoen/Galaxy/workflows/build-windows/main/Galaxy%20-%20Windows%20x64.zip)
-- [MacOs](https://nightly.link/EnyoYoen/Galaxy/workflows/build-macos/main/Galaxy%20-%20MacOs%20x64.zip)
-- [Linux](https://nightly.link/EnyoYoen/Galaxy/workflows/build-linux/main/Galaxy%20-%20Linux%20x64.zip) 
+- [Windows](https://nightly.link/EnyoYoen/Galaxy/workflows/build-windows/master/Galaxy%20-%20Windows%20x64.zip)
+- [MacOs](https://nightly.link/EnyoYoen/Galaxy/workflows/build-macos/master/Galaxy%20-%20MacOs%20x64.zip)
+- [Linux](https://nightly.link/EnyoYoen/Galaxy/workflows/build-linux/master/Galaxy%20-%20Linux%20x64.zip) 
 
 For Linux and MacOs, you need to install some dependencies :  
 - On Ubuntu 22.04 or later
