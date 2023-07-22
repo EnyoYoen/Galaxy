@@ -14,6 +14,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(OUTPUT_TYPE "OUTPUT_TYPE" CACHE STRING "")
 
 find_package(Qt6 COMPONENTS Widgets REQUIRED)
+if (NOT WIN32)
+    find_package(Threads REQUIRED)
+endif (NOT WIN32)
 
 set(SOURCES
     "main.cpp"
@@ -56,6 +59,10 @@ else()
     set_target_properties(ToDoList PROPERTIES PREFIX "")
     set_target_properties(ToDoList PROPERTIES SUFFIX ".glx")
     target_compile_definitions(ToDoList PRIVATE DL)
+endif()
+
+if (NOT WIN32)
+    target_link_libraries(ToDoList pthread)
 endif()
 
 target_link_libraries(ToDoList Qt6::Widgets)
