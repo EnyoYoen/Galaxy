@@ -29,7 +29,7 @@ PopUp::PopUp(QStringList prompts, QString title, QWidget *p)
     buttonLay->addStretch();
 
     contentLay->addWidget(header);
-    for (size_t i = 0 ; i < prompts.size() ; i++) {
+    for (qsizetype i = 0 ; i < prompts.size() ; i++) {
         QLineEdit *input = new QLineEdit(content);
         input->setPlaceholderText(prompts[i]);
         contentLay->addWidget(input);

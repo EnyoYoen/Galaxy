@@ -22,7 +22,7 @@ void Manager::load()
         QJsonObject j = QJsonDocument::fromJson(jsonFile.readAll()).object();
 
         QJsonArray jlists = j["lists"].toArray();
-        for (size_t i = 0 ; i < jlists.count() ; i++) {
+        for (Id i = 0 ; i < (Id)jlists.count() ; i++) {
             lists.insert(i, JList(jlists[i].toObject()));
         }
         for (auto recentList : j["recent"].toArray()) {

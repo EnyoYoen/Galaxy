@@ -29,7 +29,7 @@ SidebarTab::SidebarTab(QString name, QStringList& elementsTitle, std::vector<std
         icon->setProperty("class", QString("tab-icon-") + (show ? "opened" : "closed"));
     });
 
-    for (size_t i = 0 ; i < elementsTitle.size() ; i++) {
+    for (qsizetype i = 0 ; i < elementsTitle.size() ; i++) {
         Clickable *element = new Clickable([clicHandlers, i](QMouseEvent *e) { clicHandlers[i](); }, elements);
         QVBoxLayout *elementLay = new QVBoxLayout(element);
         QLabel *elementTitle = new QLabel(elementsTitle[i]);

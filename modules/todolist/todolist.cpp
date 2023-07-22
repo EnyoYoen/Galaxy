@@ -177,7 +177,7 @@ void ToDoList::createSidebar()
 
     std::vector<std::function<void()>> recentListsHandlers;
     auto recents = Manager::getRecents();
-    for (size_t i = 0 ; i < recents.size() ; i++) {
+    for (Id i = 0 ; i < (Id)recents.size() ; i++) {
         recentListsHandlers.push_back([this, i]() { openList(i); });
     }
     SidebarTab *recentLists = new SidebarTab("Recent lists", recents, recentListsHandlers, sbContent);
@@ -195,7 +195,7 @@ void ToDoList::createSidebar()
 }
 
 
-void ToDoList::openList(size_t id)
+void ToDoList::openList(Id id)
 {
     scrollList->hide();
     for (auto list : lists) 
@@ -214,7 +214,7 @@ void ToDoList::openHomePage()
 
 void ToDoList::updateLists(int w)
 {
-    for (size_t i = 0 ; i < listsLay->count() ; i++)
+    for (int i = 0 ; i < listsLay->count() ; i++)
         listsLay->removeItem(listsLay->itemAt(i));
     int r = 0, c = 0;
     for (auto list : homeLists) {

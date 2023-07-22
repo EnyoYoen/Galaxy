@@ -14,7 +14,7 @@ JSublist::JSublist(QJsonObject j)
     : title(j["title"].toString())
 {
     auto jarray = j["elements"].toArray();
-    for (size_t i = 0 ; i < jarray.size() ; i++)
+    for (Id i = 0 ; i < (Id)jarray.size() ; i++)
         elements.insert(i, JElement(jarray[i].toObject()));
 }
 
@@ -27,7 +27,7 @@ JList::JList(QJsonObject j)
       viewTimestamp(QDateTime::fromSecsSinceEpoch(j["view_timestamp"].toInteger())) 
 {
     auto jarray = j["sublists"].toArray();
-    for (size_t i = 0 ; i < jarray.size() ; i++)
+    for (Id i = 0 ; i < (Id)jarray.size() ; i++)
         sublists.insert(i, JSublist(jarray[i].toObject()));
 }
 

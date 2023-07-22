@@ -3,7 +3,7 @@
 
 #include <QVariant>
 
-IconButton::IconButton(std::function<void()> onClic, QString name, QWidget *p, size_t m_size)
+IconButton::IconButton(std::function<void()> onClic, QString name, QWidget *p, int m_size)
     : QPushButton(p), size(m_size)
 {
     setObjectName(name);

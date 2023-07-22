@@ -181,7 +181,7 @@ void List::mouseReleaseEvent(QMouseEvent *e)
         QPoint center = element->pos() + element->contentsRect().center();
         size_t min = -1;
         Sublist *hoveredSublist = nullptr;
-        for (size_t i = 0 ; i < sublists.size() ; i++) {
+        for (qsizetype i = 0 ; i < sublists.size() ; i++) {
             int distance = qAbs(sublists[i]->pos().x() + sublists[i]->contentsRect().center().x() - center.x());
             if (distance < min) {
                 min = distance;
