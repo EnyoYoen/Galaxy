@@ -5,6 +5,7 @@
  - [Modules](#modules)
  - [Download](#download)
  - [Build and Run](#build-and-run)
+ - [How to create a module](#how-to-create-a-module)
  - [Contact](#contact)
  - [Coding conventions](#coding-conventions)
  - [License](#license)
@@ -74,11 +75,32 @@ cmake --build . -j 8
 ```
 ### Run
 The executable is in the 'Galaxy/build' folder ;)  
-The modules (\*.glx) and their config files (\*.yml) are in the 'Galaxy/build/modules' folder. 
+The modules (\*.glx) and their config files (\*.yml) are in the 'Galaxy/build/modules' folder.
+
+## How to create a module
+Your module repository has to contain at the root :
+ - A 'build' folder (where the lib will be located) with a .gitkeep if it is empty
+ - A 'CMakeLists.txt' that compiles to a shared library by default or that can accept the 'OUTPUT_TYPE' argument and compiles to a shared library when set to 'dl'.  
+    - The compiled library has to be named the same way as your module directory and has to end with '.glx', like this : '\<module directory name\>.glx'. For example : 'todolist.glx' for the module directory 'todolist'.
+    - The library has to contain an exported function named 'load' that returns the module widget and that has this definition : ```QWidget *load(QWidget *);```.  
+    For example, in the To-Do Lists module : 
+    ``` cpp    
+    extern "C" Q_DECL_EXPORT QWidget *load(QWidget *parent)
+    {
+        return new ToDoList(parent);
+    }
+    ```   
+ - A 'config.yml' file
+ - You can copy the CMakeLists and the config.yml of a module in this repository if you want.  
+
+That's it !
+
 ## Contact
-You can reach me by e-mail at this address: enyotoyrep@gmail.com or on Discord: yoen.
+You can reach me by e-mail at this address: enyotoyrep@gmail.com or on Discord: 'yoen.'
+
 ## Coding Conventions
 If you want to contribute to this project, you must respect the coding conventions from Qt (https://wiki.qt.io/Coding_Conventions).
+
 ## License
 [MIT License](https://en.wikipedia.org/wiki/MIT_License)
 
