@@ -51,14 +51,14 @@ set(HEADERS
 
 qt_add_resources(SOURCES res.qrc)
 
-if (${OUTPUT_TYPE} STREQUAL "exe")
-    add_executable(ToDoList ${SOURCES} ${HEADERS})
-else()
+if (${OUTPUT_TYPE} STREQUAL "dl")
     add_library(ToDoList SHARED ${SOURCES} ${HEADERS})
     set_target_properties(ToDoList PROPERTIES LIBRARY_OUTPUT_NAME todolist) # TODO : allow upper case
     set_target_properties(ToDoList PROPERTIES PREFIX "")
     set_target_properties(ToDoList PROPERTIES SUFFIX ".glx")
     target_compile_definitions(ToDoList PRIVATE DL)
+else()
+    add_executable(ToDoList ${SOURCES} ${HEADERS})
 endif()
 
 if (NOT WIN32)
