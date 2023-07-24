@@ -16,7 +16,7 @@ public:
     Sublist(Id list, Id sublist, QWidget *p);
 
     void rename(QString name);
-    bool dropElement(Element *element, int y);
+    bool dropElement(Element *element, Id elementId, Id fromSublist, int y);
 
     QVBoxLayout *lay = nullptr; 
 

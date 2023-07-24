@@ -42,11 +42,13 @@ private:
 
     Sublist *sublist = nullptr;
     QPointF sublistDragOffset;
+    Id sublistPressedId = InvalidId;
     bool sublistPressed = false;
 
     Element *element = nullptr;
     Sublist *elementSublist = nullptr;
     QPointF elementDragOffset;
+    Id elementPressedId = InvalidId;
     int elementLayPos;
     bool elementPressed = false;
 

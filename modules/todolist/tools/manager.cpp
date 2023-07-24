@@ -6,6 +6,8 @@
 #include <QJsonArray>
 
 QMap<Id, JList> Manager::lists;
+QMap<Id, QList<Id>> Manager::sublistsOrder;
+QMap<Id, QMap<Id, QList<Id>>> Manager::elementsOrder;
 QStringList Manager::recent;
 #ifdef DL
 QString Manager::filepath = "build/modules/cache/todolists.json";
@@ -24,6 +26,9 @@ void Manager::load()
         QJsonArray jlists = j["lists"].toArray();
         for (Id i = 0 ; i < (Id)jlists.count() ; i++) {
             lists.insert(i, JList(jlists[i].toObject()));
+            for (auto sublistId : getSublists(i))
+                elementsOrder[i].insert(sublistId, getElements(i, sublistId));
+            sublistsOrder.insert(i, getSublists(i));
         }
         for (auto recentList : j["recent"].toArray()) {
             recent.append(recentList.toString());
@@ -37,7 +42,8 @@ void Manager::save()
     QJsonArray jlists;
     QJsonArray jrecent;
 
-    for (auto list : lists) {
+    for (auto listId : getLists()) {
+        JList list = getList(listId);
         QJsonObject jlist;
         jlist.insert("type", (int)list.type);
         jlist.insert("priority", list.priority);
@@ -45,12 +51,14 @@ void Manager::save()
         jlist.insert("view_timestamp", list.viewTimestamp.toSecsSinceEpoch());
 
         QJsonArray jsublists;
-        for (auto sublist : list.sublists) {
+        for (auto sublistId : sublistsOrder[listId]) {
+            JSublist sublist = getSublist(listId, sublistId);
             QJsonObject jsublist;
             jsublist.insert("title", sublist.title);
 
             QJsonArray jelements;
-            for (auto element : sublist.elements) {
+            for (auto elementId : elementsOrder[listId][sublistId]) {
+                JElement element = getElement(listId, sublistId, elementId);
                 QJsonObject jelement;
                 jelement.insert("name", element.name);
                 jelement.insert("content", element.content);
@@ -73,6 +81,13 @@ void Manager::save()
     QFile jsonFile(filepath);
     jsonFile.open(QIODevice::WriteOnly);
     jsonFile.write(QJsonDocument(jsave).toJson(QJsonDocument::Compact));
+}
+
+
+void Manager::viewList(Id list)
+{
+    lists[list].viewTimestamp = QDateTime::currentDateTime();
+    save();
 }
 
 void Manager::removeList(Id list)
@@ -107,9 +122,16 @@ QList<Id> Manager::getLists()
 }
 
 
+void Manager::setIndexSublist(Id list, Id sublist, size_t index)
+{
+    sublistsOrder[list].insert(index, sublistsOrder[list].takeAt(sublistsOrder[list].indexOf(sublist)));
+    save();
+}
+
 void Manager::removeSublist(Id list, Id sublist)
 {
     lists[list].sublists.remove(sublist);
+    sublistsOrder[list].remove(sublist);
     save();
 }
 
@@ -126,6 +148,7 @@ Id Manager::addSublist(Id list, JSublist sublist)
     Id id = (sublists.size() == 0 ? 0 : sublists.lastKey() + 1); // TODO : fill available previous ids before adding one ? Maybe create an Id class
     sublists.insert(id, sublist);
     lists[list].sublists = sublists;
+    sublistsOrder[list].append(id);
     save();
     return id;
 }
@@ -141,9 +164,17 @@ QList<Id> Manager::getSublists(Id list)
 }
 
 
+void Manager::setIndexElement(Id list, Id sublist, Id element, size_t index)
+{
+    qDebug() << elementsOrder << index;
+    elementsOrder[list][sublist].insert(index, elementsOrder[list][sublist].takeAt(elementsOrder[list][sublist].indexOf(element)));
+    save();
+}
+
 void Manager::removeElement(Id list, Id sublist, Id element)
 {
     lists[list].sublists[sublist].elements.remove(element);
+    elementsOrder[list][sublist].remove(element);
     save();
 }
 
@@ -159,6 +190,7 @@ Id Manager::addElement(Id list, Id sublist, JElement element)
     auto elements = lists[list].sublists[sublist].elements;
     Id id = (elements.size() == 0 ? 0 : elements.lastKey() + 1); // TODO : fill available previous ids before adding one ? Maybe create an Id class
     lists[list].sublists[sublist].elements.insert(id, element);
+    elementsOrder[list][sublist].append(id);
     save();
     return id;
 }

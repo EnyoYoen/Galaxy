@@ -77,7 +77,7 @@ void Sublist::rename(QString name)
     Manager::replaceSublist(list, sublist, jsublist);
 }
 
-bool Sublist::dropElement(Element *element, int y)
+bool Sublist::dropElement(Element *element, Id elementId, Id fromSublist, int y)
 {
     // TODO : Maybe replace with runtime values?
     #define L_LIMIT_OFFSET -10
@@ -92,10 +92,15 @@ bool Sublist::dropElement(Element *element, int y)
             pos++;
         if (pos / 2 > elements.size() + 1)
             pos = elements.size() * 2 + 1;
-        
         pos /= 2;
 
         lay->insertWidget(pos + 1, element);
+
+        JElement jelement = Manager::getElement(list, fromSublist, elementId);
+        Manager::removeElement(list, fromSublist, elementId);
+        Manager::addElement(list, sublist, jelement);
+        Manager::setIndexElement(list, sublist, elementId, pos);
+
         return true;
     }
     return false;

@@ -153,16 +153,19 @@ void List::createSublist(QString title, Id sublistId)
     QObject::connect(sublist, &Sublist::pressed, [this, sublist, sublistId](QPointF offset) {
         this->sublist = sublist;
         sublistDragOffset = offset + sublistsContainer->pos();
+        sublistPressedId = sublistId;
         sublistPressed = true;
         sublist->raise();
     });
 
-    QObject::connect(sublist, &Sublist::elementPressed, [this, sublist](QPointF offset, QPointF pos, Id elementId, int layPos, Element *m_element) {
+    QObject::connect(sublist, &Sublist::elementPressed, [this, sublist, sublistId](QPointF offset, QPointF pos, Id elementId, int layPos, Element *m_element) {
         element = m_element;
         elementSublist = sublist;
         elementDragOffset = offset + sublistsContainer->pos();
         elementLayPos = layPos;
         elementPressed = true;
+        elementPressedId = elementId;
+        sublistPressedId = sublistId;
 
         QPointF origin = pos - sublistsContainer->pos() - offset;
 
@@ -190,7 +193,7 @@ void List::mouseReleaseEvent(QMouseEvent *e)
         }
 
         // Drop the element or replace it 
-        if (!hoveredSublist->dropElement(element, element->y() + element->height() / 2)) {
+        if (!hoveredSublist->dropElement(element, elementPressedId, sublistPressedId, element->y() + element->height() / 2)) {
             lay->removeWidget(element);
             element->setParent(elementSublist);
             elementSublist->lay->insertWidget(elementLayPos, element);
@@ -199,6 +202,8 @@ void List::mouseReleaseEvent(QMouseEvent *e)
         element = nullptr;
         elementSublist = nullptr;
         elementPressed = false;
+        elementPressedId = InvalidId;
+        sublistPressedId = InvalidId;
     } else if (sublistPressed) {
         QPoint origin = sublistsContainerLay->itemAt(0)->widget()->pos() + sublistsContainer->pos();
         int sublistWidth = sublist->width();
@@ -211,8 +216,10 @@ void List::mouseReleaseEvent(QMouseEvent *e)
         if (layoutPos >= sublistsContainerLay->count()) layoutPos--;
         
         sublistsContainerLay->insertWidget(layoutPos, sublistsContainerLay->takeAt(sublistsContainerLay->indexOf(sublist))->widget());
+        Manager::setIndexSublist(id, sublistPressedId, layoutPos);
 
         sublist = nullptr;
+        sublistPressedId = InvalidId;
         sublistPressed = false;
     }
 }
