@@ -16,6 +16,7 @@ public:
     Sublist(Id list, Id sublist, QWidget *p);
 
     void rename(QString name);
+    void deselect();
     bool dropElement(Element *element, Id elementId, Id fromSublist, int y);
 
     QVBoxLayout *lay = nullptr; 
@@ -26,6 +27,9 @@ signals:
     void popupRequest(QStringList prompts, QString title, std::function<void(bool, QStringList)> handler);
     void pressed(QPointF offset);
     void elementPressed(QPointF offset, QPointF pos, Id elementId, int layPos, Element *element);
+
+public slots:
+    void newElement();
 
 private:
     QLabel *title = nullptr;

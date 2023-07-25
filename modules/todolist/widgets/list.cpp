@@ -89,6 +89,12 @@ List::List(size_t m_id, QWidget *p)
     QObject::connect(newSublistButton, &QPushButton::clicked, this, &List::addSublist);
 }
 
+void List::newElement()
+{
+    if (sublist)
+        sublist->newElement();
+}
+
 void List::addSublist()
 {
     QStringList prompts;
@@ -175,6 +181,14 @@ void List::createSublist(QString title, Id sublistId)
         element->move(origin.x(), origin.y());
         element->raise();
     });
+}
+
+void List::mousePressEvent(QMouseEvent *e)
+{
+    if (sublist)
+        sublist->deselect();
+    if (elementSublist)
+        elementSublist->deselect();
 }
 
 void List::mouseReleaseEvent(QMouseEvent *e)

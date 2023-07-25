@@ -170,6 +170,7 @@ QPushButton.icon-button#moon {
 QLabel.sublist {
     background-color: #1f2024;
     border-radius: 5px;
+    border: rgb(111, 0, 255), 2px;
 }
 
 QLabel.sublist-title {

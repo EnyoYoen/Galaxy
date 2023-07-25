@@ -17,12 +17,14 @@ class List : public QWidget
 public:
     List(Id id, QWidget *p);
 
+    void newElement();
+
 signals:
     void back();
     void deleted();
     void renamed();
 
-private slots:
+public slots:
     void addSublist();
 
 private:
@@ -54,6 +56,7 @@ private:
 
     void createSublist(QString title, Id sublistId);
 
+    virtual void mousePressEvent(QMouseEvent *e);
     virtual void mouseReleaseEvent(QMouseEvent *e);
     virtual void mouseMoveEvent(QMouseEvent *e);
 };

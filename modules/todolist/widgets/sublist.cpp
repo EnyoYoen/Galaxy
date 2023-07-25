@@ -57,15 +57,7 @@ Sublist::Sublist(Id m_list, Id m_sublist, QWidget *p)
     addButton->setProperty("class", "sublist-add-button");
     setProperty("class", "sublist");
 
-    QObject::connect(addButton, &QPushButton::clicked, [this]() {
-        QStringList prompts;
-        prompts.append("Name");
-        prompts.append("Content");
-        emit popupRequest(prompts, "Create the new element", [this](bool cancelled, QStringList prompts) {
-            if (!cancelled && !prompts.empty() && !prompts[0].isEmpty())
-                createElement(prompts[0], prompts[1], InvalidId);
-        });
-    });
+    QObject::connect(addButton, &QPushButton::clicked, this, &Sublist::newElement);
 }
 
 void Sublist::rename(QString name)
@@ -75,6 +67,22 @@ void Sublist::rename(QString name)
     JSublist jsublist = Manager::getSublist(list, sublist);
     jsublist.title = name;
     Manager::replaceSublist(list, sublist, jsublist);
+}
+
+void Sublist::newElement()
+{
+    QStringList prompts;
+    prompts.append("Name");
+    prompts.append("Content");
+    emit popupRequest(prompts, "Create the new element", [this](bool cancelled, QStringList prompts) {
+        if (!cancelled && !prompts.empty() && !prompts[0].isEmpty())
+            createElement(prompts[0], prompts[1], InvalidId);
+    });
+}
+
+void Sublist::deselect()
+{
+    // TODO : add border when selected and remove it in deselect
 }
 
 bool Sublist::dropElement(Element *element, Id elementId, Id fromSublist, int y)
@@ -98,7 +106,7 @@ bool Sublist::dropElement(Element *element, Id elementId, Id fromSublist, int y)
 
         JElement jelement = Manager::getElement(list, fromSublist, elementId);
         Manager::removeElement(list, fromSublist, elementId);
-        Manager::addElement(list, sublist, jelement);
+        elementId = Manager::addElement(list, sublist, jelement);
         Manager::setIndexElement(list, sublist, elementId, pos);
 
         return true;

@@ -166,7 +166,6 @@ QList<Id> Manager::getSublists(Id list)
 
 void Manager::setIndexElement(Id list, Id sublist, Id element, size_t index)
 {
-    qDebug() << elementsOrder << index;
     elementsOrder[list][sublist].insert(index, elementsOrder[list][sublist].takeAt(elementsOrder[list][sublist].indexOf(element)));
     save();
 }
@@ -174,7 +173,7 @@ void Manager::setIndexElement(Id list, Id sublist, Id element, size_t index)
 void Manager::removeElement(Id list, Id sublist, Id element)
 {
     lists[list].sublists[sublist].elements.remove(element);
-    elementsOrder[list][sublist].remove(element);
+    elementsOrder[list][sublist].removeAll(element);
     save();
 }
 

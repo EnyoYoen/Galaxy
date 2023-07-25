@@ -49,6 +49,7 @@ private:
     PopUp *popup = nullptr;
     QList<Clickable *> homeLists;
     QList<QLabel *> homeListLabels;
+    bool homeShown = true;
 
     // Sidebar
     QWidget *sidebar = nullptr;
@@ -64,6 +65,7 @@ private:
 
     // Lists
     QList<List *> lists;
+    List *listShown = nullptr;
 };
 
 #endif

@@ -6,6 +6,7 @@
 
 #include <QFile>
 #include <QFontDatabase>
+#include <QShortcut>
 
 // Replace hasSidebar with a config? (object passed to the module or file)
 ToDoList::ToDoList(/*bool hasSidebar, */QWidget *p)
@@ -73,6 +74,18 @@ ToDoList::ToDoList(/*bool hasSidebar, */QWidget *p)
         updateLists(s.width());
     });
     installEventFilter(f);
+
+    QShortcut *addElementShortcut = new QShortcut(QKeySequence(Qt::CTRL | Qt::Key_Plus), this, [this]() {
+        if (!homeShown)
+            listShown->newElement(); // TODO : not working
+    });
+    QShortcut *addShortcut = new QShortcut(QKeySequence(Qt::Key_Plus), this, [this]() {
+        if (homeShown) {
+            addList();
+        } else {
+            listShown->addSublist();
+        }
+    });
 
     if (QFontDatabase::addApplicationFont(":/whitney.otf")) {
         logger.warn("Can't add application font : whitney");
@@ -200,7 +213,11 @@ void ToDoList::openList(Id id)
     scrollList->hide();
     for (auto list : lists) 
         list->hide();
-    lists[id]->show();
+    listShown = lists[id]; 
+    listShown->show();
+    homeShown = false;
+
+    Manager::viewList(id);
 }
 
 void ToDoList::openHomePage()
@@ -210,6 +227,8 @@ void ToDoList::openHomePage()
     
     scrollList->show();
     updateLists(scrollList->width());
+    homeShown = true;
+    listShown = nullptr;
 }
 
 void ToDoList::updateLists(int w)
