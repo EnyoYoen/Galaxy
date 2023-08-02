@@ -2,16 +2,19 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include <thread>
+#include <mutex>
+#include <condition_variable>
 
 class Logger
 {
 public:
     Logger(const char *module);
-    Logger(const char *module, const std::string& path);
-    Logger(const std::string& module);
-    Logger(const std::string& module, const std::string& path);
 
-    void operator<<(const std::string& message);
+    static void setup(const std::string& path = std::string());
+    static void close();
+
+    Logger& operator<<(const std::string& message);
 
     void info(const std::string& message);
     void warn(const std::string& message);
@@ -23,8 +26,14 @@ public:
 private:
     void log(const std::string& message);
 
-    std::vector<std::string> buffer; // TODO : buffer used by a thread which write to the file (no long io operation blocking <- need to benchmark to see if there is a difference) 
-    std::ofstream out;  
+    static void loop();
 
-    static std::string defaultPath;
+    static std::thread logThread;
+    static std::mutex *lock;
+    static std::condition_variable waiter;
+    static std::ofstream out;
+    static std::vector<std::string> buffer;
+    static bool logging;
+
+    static const char *defaultPath;
 };

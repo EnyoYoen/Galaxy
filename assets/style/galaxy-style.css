@@ -1,0 +1,66 @@
+QWidget.galaxy {
+    background-color: #141519;
+}
+
+QWidget.module-container {
+    background-color: #1f2024;
+}
+
+QWidget.module-title {
+    font-family: "Whitney"; 
+    font-size: 18px;
+    color: #feffff;
+}
+
+QWidget.sidebar {
+    background-color: #1f2024;
+}
+
+QLabel.sidebar-title {
+    font-family: "Whitney"; 
+    font-size: 20px;
+    color: #feffff;
+}
+
+QWidget.sidebar-scroll-content {
+    background-color: #1f2024;
+}
+
+QScrollArea.sidebar-scroll {
+    background-color: #1f2024;
+    border: none;
+}
+QScrollBar::handle:vertical {
+    border: none;
+    border-radius: 2px;
+    background-color: #acacac;
+}
+QScrollBar:vertical {
+    border: none;
+    background-color: #1f2024;
+    border-radius: 3px;
+    width: 6px;
+}
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    border:none;
+    background: none;
+    height: 0px;
+}
+QScrollBar::left-arrow:vertical, QScrollBar::right-arrow:vertical {
+    background: none;
+}
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+    background: none;
+}
+
+QWidget.sidebar-module {
+    background-color: #0f1013;
+    border-radius: 10px;
+}
+
+QLabel.sidebar-module-title {
+    background-color: #18191d;
+    font-family: "Whitney"; 
+    font-size: 20px;
+    color: #feffff;
+}

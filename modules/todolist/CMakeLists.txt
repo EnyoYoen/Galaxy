@@ -66,5 +66,3 @@ if (NOT WIN32)
 endif()
 
 target_link_libraries(ToDoList Qt6::Widgets)
-
-include_directories(ToDoList ${CMAKE_CURRENT_SOURCE_DIR}/libs)

@@ -1,0 +1,6 @@
+<RCC>
+    <qresource>
+        <file alias="whitney.otf">../assets/fonts/whitney.otf</file>
+        <file alias="galaxy-style.css">../assets/style/galaxy-style.css</file>
+    </qresource>
+</RCC>

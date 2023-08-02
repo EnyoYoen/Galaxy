@@ -16,11 +16,20 @@ find_package(Qt6 COMPONENTS Widgets REQUIRED)
 set(SOURCES
     "src/main.cpp"
     "src/galaxy.cpp"
+    "src/widgets/sidebar.cpp"
+    "src/widgets/sidebarmodule.cpp"
+    "tools/logger.cpp"
 )
 
 set(HEADERS
     "src/galaxy.h"
+    "src/widgets/sidebar.h"
+    "src/widgets/sidebarmodule.h"
+    "src/tools/logger.h"
+    "tools/logger.h"
 )
+
+qt_add_resources(SOURCES "src/galaxy.qrc")
 
 add_executable(Galaxy ${SOURCES} ${HEADERS})
 
