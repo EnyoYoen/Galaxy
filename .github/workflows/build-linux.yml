@@ -25,6 +25,7 @@ jobs:
       - name: Build
         shell: bash
         run: |
+          git submodule update --recursive --remote --init
           ./build_modules.sh
           cd build
           cmake -DCMAKE_BUILD_TYPE=Release ..

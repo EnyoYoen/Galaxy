@@ -27,6 +27,7 @@ jobs:
         env:
           CXX: cl.exe
         run: |
+          git submodule update --recursive --remote --init
           $GITHUB_WORKSPACE/build_modules.bat
           cd build
           cmake -DCMAKE_BUILD_TYPE=Release ..
