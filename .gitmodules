@@ -1,3 +1,6 @@
 [submodule "modules/todolist"]
 	path = modules/todolist
 	url = https://github.com/EnyoYoen/ToDoList.git
+[submodule "tools"]
+	path = tools
+	url = https://github.com/EnyoYoen/Galaxy-Tools
